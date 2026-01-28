@@ -3,6 +3,7 @@
   --bg-primary: #0F1115;
   --bg-secondary: #1A1D23;
   --gold: #C6A75E;
+  --gold-hover: #FFD66B;
   --grey: #8A8F98;
   --text: #EDEDED;
 }
@@ -29,6 +30,8 @@ h1, h2, h3 {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  opacity: 0; /* for fade-in */
+  transform: translateY(30px);
 }
 
 .page-header {
@@ -86,6 +89,24 @@ h1, h2, h3 {
   font-style: italic;
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+/* --- COPY BUTTON --- */
+.copy-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--gold);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: var(--gold-hover);
 }
 
 /* --- EXECUTION CARDS --- */

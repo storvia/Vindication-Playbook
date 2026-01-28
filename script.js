@@ -1,12 +1,8 @@
 // Wait for DOM
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Fade-in effect for sections
+  // Fade-in effect for pages
   const pages = document.querySelectorAll(".page");
-  pages.forEach(page => {
-    page.style.opacity = 0;
-    page.style.transform = "translateY(30px)";
-  });
 
   const fadeInPage = (page) => {
     page.style.transition = "opacity 1s ease-out, transform 1s ease-out";
@@ -17,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fade in first page immediately
   fadeInPage(pages[0]);
 
-  // Optional: scroll fade-in for the second page
+  // Scroll fade-in for the rest
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -31,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   pages.forEach(page => observer.observe(page));
 
-  // Highlight numbers on hover
+  // Gold highlight on hover
   const goldElements = document.querySelectorAll(".gold");
   goldElements.forEach(el => {
     el.addEventListener("mouseenter", () => {
-      el.style.color = "#FFD66B"; // slightly brighter gold
+      el.style.color = "#FFD66B";
       el.style.transition = "color 0.3s ease";
     });
     el.addEventListener("mouseleave", () => {
@@ -43,14 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Copy prompt text on click (optional feature)
-  const promptText = document.querySelector(".prompt-text");
-  if(promptText){
-    promptText.style.cursor = "pointer";
-    promptText.title = "Click to copy";
-    promptText.addEventListener("click", () => {
+  // Copy Prompt functionality
+  const copyBtn = document.getElementById("copyPromptBtn");
+  const promptText = document.getElementById("promptText");
+
+  if(copyBtn && promptText){
+    copyBtn.addEventListener("click", () => {
       navigator.clipboard.writeText(promptText.textContent).then(() => {
-        alert("Prompt text copied!");
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = "Copy Prompt", 1500);
+      }).catch(() => {
+        alert("Copy failed. Try manually.");
       });
     });
   }

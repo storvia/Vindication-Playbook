@@ -1,159 +1,195 @@
-/* --- COLOR PALETTE --- */
+/* -------------------- COLOR SYSTEM -------------------- */
 :root {
-  --bg-primary: #0F1115;
-  --bg-secondary: #1A1D23;
-  --gold: #C6A75E;
-  --gold-hover: #FFD66B;
-  --grey: #8A8F98;
-  --text: #EDEDED;
+  --bg-primary: #0F1115;        /* Deep charcoal */
+  --bg-secondary: #1A1D23;      /* Dark slate */
+  --gold-start: #C6A75E;        /* Muted champagne */
+  --gold-end: #D6B77E;          /* Subtle gradient for shine */
+  --grey: #8A8F98;              /* Cool steel grey */
+  --text: #EDEDED;              /* Soft off-white */
 }
 
-/* --- GLOBAL STYLES --- */
+/* -------------------- GLOBAL STYLES -------------------- */
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-primary);
-  color: var(--text);
   font-family: 'Inter', sans-serif;
-  line-height: 1.55;
+  line-height: 1.65;
+  background: var(--bg-primary);
+  color: var(--text);
 }
 
 h1, h2, h3 {
   margin: 0;
+  line-height: 1.2;
 }
 
-/* --- PAGE STRUCTURE --- */
+/* Smooth fade-in for pages */
 .page {
   min-height: 100vh;
-  padding: 80px 60px;
+  padding: 100px 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
-  opacity: 0; /* for fade-in */
-  transform: translateY(30px);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
 }
 
+/* -------------------- HEADER -------------------- */
 .page-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .title {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: var(--gold-start);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   letter-spacing: 2px;
-  margin-top: 10px;
+  color: var(--grey);
+  margin-top: 12px;
+  text-transform: uppercase;
 }
 
-.gold { color: var(--gold); }
-.grey { color: var(--grey); }
-
-/* --- HERO PROOF --- */
+/* -------------------- HERO PROOF -------------------- */
 .hero-proof h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
+  margin-bottom: 60px;
 }
 
 .hero-proof .gold {
-  font-weight: 600;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
-/* --- PROMPT BOX --- */
+/* -------------------- PROMPT BOX -------------------- */
 .prompt-box {
   background-color: var(--bg-secondary);
-  padding: 40px 30px;
-  margin-top: 50px;
+  padding: 50px 40px;
+  margin-top: 40px;
   width: 100%;
-  max-width: 800px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  max-width: 850px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prompt-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
 }
 
 .prompt-divider {
-  height: 2px;
-  background-color: var(--gold);
-  width: 50px;
-  margin-bottom: 20px;
+  height: 3px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-end));
+  margin-bottom: 25px;
+  border-radius: 2px;
 }
 
 .prompt-text {
   font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  color: var(--text);
 }
 
-/* --- COPY BUTTON --- */
+/* -------------------- COPY BUTTON -------------------- */
 .copy-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: var(--gold);
+  margin-top: 25px;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-end));
   color: var(--bg-primary);
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .copy-btn:hover {
-  background-color: var(--gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
-/* --- EXECUTION CARDS --- */
+/* -------------------- EXECUTION CARDS -------------------- */
 .execution-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin: 40px 0;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 36px;
+  margin: 50px 0;
 }
 
 .card {
   background-color: var(--bg-secondary);
-  padding: 30px 25px;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  padding: 36px 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
 }
 
 .card-number {
-  font-size: 2rem;
+  font-size: 2.2rem;
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .card-text {
   font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
 }
 
-/* --- SECTION DIVIDER --- */
+/* -------------------- SECTION DIVIDER -------------------- */
 .section-divider {
-  width: 60px;
-  height: 2px;
-  background-color: var(--gold);
-  margin: 10px 0 40px 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-end));
+  margin: 15px 0 45px 0;
+  border-radius: 2px;
 }
 
-/* --- CLOSING SECTION --- */
+/* -------------------- CLOSING SECTION -------------------- */
 .closing-section ul {
   list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 20px;
+  padding-left: 24px;
+  margin-bottom: 30px;
 }
 
 .closing-section li {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  font-size: 1rem;
 }
 
 .footer {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   text-align: center;
+  color: var(--grey);
 }
